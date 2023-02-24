@@ -134,3 +134,15 @@ plot(bam)
 bts <- ggplot(data) + geom_bar(aes(x = time_signature), color = "darkgreen", fill="green", alpha=0.3) +
   labs(y = "", x = "Time Signature") 
 plot(bts)
+
+
+#ANALISI MULTIVARIATA
+#ONE-HOT-ENCODING: quando vogliamo rappresentare i dati in una matrice di correlazione dobbiamo prestare attenzione ai fattori.
+#One-Hot-Encoding è una tecnica che crea per ogni "livello" di ogni fattore una nuova colonna.
+library(caret)
+data2 = data[-1]
+dmy <- dummyVars(" ~ .", data = data2)
+df <- data.frame(predict(dmy, newdata = data2))
+View(df)
+
+
