@@ -36,3 +36,46 @@ data <- read_csv("data.csv", col_types = cols(...1 = col_skip(),
                                                                                                           "1")), speechiness = col_number(), 
                                               tempo = col_number(), time_signature = col_factor(levels = c("0", "1", "3", "4", "5")), 
                                               audio_valence = col_number()))
+
+library(ggplot2)
+pdur <- ggplot(data, aes(x = NULL , y = song_duration_s)) +
+  geom_boxplot(color = "darkgreen", fill="green", alpha=0.3) +
+  labs(y = "Song Duration", x = NULL) 
+print(pdur)
+pacoustic <- ggplot(data) +
+  geom_boxplot(aes(x = "", y = acousticness), color = "darkgreen", fill="green", alpha=0.3) +
+  labs(y = "Acousticness", x = NULL)
+print(pacoustic)
+pdance <- ggplot(data) +
+  geom_boxplot(aes(x = "", y = danceability ), color = "darkgreen", fill="green", alpha=0.3) +
+  labs(y = "Danceability", x = NULL)
+penergy <- ggplot(data) +
+  geom_boxplot(aes(x = "", y = energy ), color = "darkgreen", fill="green", alpha=0.3) +
+  labs(y = "Energy", x = NULL)
+pinstrument <- ggplot(data) +
+  geom_boxplot(aes(x = "", y = instrumentalness ), color = "darkgreen", fill="green", alpha=0.3) +
+  labs(y = "Instrumentalness", x = NULL)
+plive <- ggplot(data) +
+  geom_boxplot(aes(x = "", y = liveness ), color = "darkgreen", fill="green", alpha=0.3) +
+  labs(y = "Liveness", x = NULL)
+ploud <- ggplot(data) +
+  geom_boxplot(aes(x = "", y = loudness ) , color = "darkgreen", fill="green", alpha=0.3) +
+  labs(y = "Loudness", x = NULL)
+pspeech <- ggplot(data) +
+  geom_boxplot(aes(x = "", y = speechiness ) , color = "darkgreen", fill="green", alpha=0.3) +
+  labs(y = "Speechness", x = NULL)
+ptempo <- ggplot(data) +
+  geom_boxplot(aes(x = "", y = tempo ) , color = "darkgreen", fill="green", alpha=0.3) +
+  labs(y = "Tempo", x = NULL)
+pts <- ggplot(data) +
+  geom_boxplot(aes(x = "", y = time_signature ) , color = "darkgreen", fill="green", alpha=0.3) +
+  labs(y = "Time Signature", x = NULL)
+pav <- ggplot(data) +
+  geom_boxplot(aes(x = "", y = audio_valence ) , color = "darkgreen", fill="green", alpha=0.3) +
+  labs(y = "Audio Valence", x = NULL)
+
+library(gridExtra)
+grid1 = grid.arrange(pdur, pacoustic, pdance, penergy, nrow = 2)
+grid2 = grid.arrange(pinstrument, plive, ploud, pspeech, nrow = 2)
+grid3 = grid.arrange(ptempo, pts, pav, nrow = 2)
+
