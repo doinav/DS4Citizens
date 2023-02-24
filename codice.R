@@ -74,3 +74,63 @@ grid1 = grid.arrange(pdur, pacoustic, pdance, penergy, nrow = 2)
 grid2 = grid.arrange(pinstrument, plive, ploud, pspeech, nrow = 2)
 grid3 = grid.arrange(ptempo, pts, pav, nrow = 2)
 
+# rappresentazione delle variabili categoriche -> bar plot (key, audio_mode, time_signature)
+# rappresentazione delle variabili quantitative -> istogrammi e densità
+# istogrammi x vedere la densità delle variabili:
+
+par(mfrow=c(2,3))
+ddur <- density(data$song_duration_s) 
+plot(ddur, type = "n", main = "Song Duration") +
+polygon(ddur, col = "lightgreen", border = "black")
+
+dpopu <- density(data$song_popularity) 
+plot(dpopu, type = "n", main = "Song Popularity")
+polygon(dpopu, col = "lightgreen", border = "black")
+
+dacou <- density(data$acousticness) 
+plot(dacou, type = "n", main = "Acousticness")
+polygon(dacou, col = "lightgreen", border = "black")
+
+ddance <- density(data$danceability) 
+plot(ddance, type = "n", main = "Danceability")
+polygon(ddance, col = "lightgreen", border = "black")
+
+denergy <- density(data$energy)
+plot(dacou, type = "n", main = "Energy")
+polygon(denergy, col = "lightgreen", border = "black")
+
+dinstrum <- density(data$instrumentalness)
+plot(dinstrum, type = "n", main = "Instrumentalness")
+polygon(dinstrum, col = "lightgreen", border = "black")
+
+dlive <- density(data$liveness)
+plot(dlive, type = "n", main = "Liveness")
+polygon(dlive, col = "lightgreen", border = "black")
+
+dloud <- density(data$loudness)
+plot(dloud, type = "n", main = "Loudness")
+polygon(dloud, col = "lightgreen", border = "black")
+
+dtempo <- density(data$tempo)
+plot(dtempo, type = "n", main = "Tempo")
+polygon(dtempo, col = "lightgreen", border = "black")
+
+dspeech <- density(data$speechiness)
+plot(dspeech, type = "n", main = "Speechiness")
+polygon(dspeech, col = "lightgreen", border = "black")
+
+dav <- density(data$audio_valence) 
+plot(dav, type = "n", main = "Audio Valence") 
+polygon(dav, col = "lightgreen", border = "black")
+
+bkey <- ggplot(data) + geom_bar(aes(x = key), color = "darkgreen", fill="green", alpha=0.3) +
+  labs(y = "", x = "Key") 
+plot(bkey)
+
+bam <- ggplot(data) + geom_bar(aes(x = audio_mode), color = "darkgreen", fill="green", alpha=0.3) +
+  labs(y = "", x = "Audio mode") 
+plot(bam)
+
+bts <- ggplot(data) + geom_bar(aes(x = time_signature), color = "darkgreen", fill="green", alpha=0.3) +
+  labs(y = "", x = "Time Signature") 
+plot(bts)
