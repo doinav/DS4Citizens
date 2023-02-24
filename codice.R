@@ -25,12 +25,14 @@ data = read.csv("data.csv")
 data = subset(data, select = -c(X))
 rm(df,df2,song_data)
 library(readr)
+
+library(readr)
 data <- read_csv("data.csv", col_types = cols(...1 = col_skip(), 
                                               song_popularity = col_integer(), song_duration_s = col_number(), 
                                               acousticness = col_number(), danceability = col_number(), 
                                               energy = col_number(), instrumentalness = col_number(), 
-                                              key = col_integer(), liveness = col_number(), 
+                                              key = col_factor(levels = c("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11")), liveness = col_number(), 
                                               loudness = col_number(), audio_mode = col_factor(levels = c("0", 
                                                                                                           "1")), speechiness = col_number(), 
-                                              tempo = col_number(), time_signature = col_integer(), 
+                                              tempo = col_number(), time_signature = col_factor(levels = c("0", "1", "3", "4", "5")), 
                                               audio_valence = col_number()))
