@@ -21,11 +21,6 @@ write.csv(df2, file = "data.csv")
 
 #10/02
 #intanto, ogni volta che importate il dataset utilizzate questo codice
-data = read.csv("data.csv")
-data = subset(data, select = -c(X))
-rm(df,df2,song_data)
-library(readr)
-
 library(readr)
 data <- read_csv("data.csv", col_types = cols(...1 = col_skip(), 
                                               song_popularity = col_integer(), song_duration_s = col_number(), 
