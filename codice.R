@@ -17,12 +17,12 @@ colnames(df2)[colnames(df2) == "song_duration_ms"] = "song_duration_s"
 #df3 <- df2 %>% rename(song_duration_s = song_duration_ms)
 
 #esportiamo il file
-write.csv(df2, file = "data.csv")
+write.csv(df2, file = "data.csv", row.names = FALSE)
 
 #10/02
 #intanto, ogni volta che importate il dataset utilizzate questo codice
 library(readr)
-data <- read_csv("data.csv", col_types = cols(...1 = col_skip(), 
+data <- read_csv("data.csv", col_types = cols(
                                               song_popularity = col_integer(), song_duration_s = col_number(), 
                                               acousticness = col_number(), danceability = col_number(), 
                                               energy = col_number(), instrumentalness = col_number(), 
