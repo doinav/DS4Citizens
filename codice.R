@@ -145,4 +145,39 @@ dmy <- dummyVars(" ~ .", data = data2)
 df <- data.frame(predict(dmy, newdata = data2))
 View(df)
 
+# correlazioni e correlation matrix
+#correlation matrix
+#1
+library(ggcorrplot)
+corrm = ggcorrplot(cor(df))
+corrm
+#2
+library(corrplot)
+cor1 = cor(df)
+cor1
+corm = corrplot(cor1)
+
+#verificare la presenza di multicollinearità:
+# 1 costruire il modello lineare sulle variabili che mostrano maggiore collinearità tra di loro
+model2 = lm(song_popularity ~ acousticness + loudness + danceability + energy + instrumentalness + liveness, data = data2)
+summary(model2)
+
+# possiamo verificare la presenza di multicollinearità utilizzando un indicatore VIF
+library(car)
+
+vif_values2 <- vif(model2)
+barplot(vif_values2, main = "VIF Values", horiz = TRUE, col = "steelblue")
+#multicollinearità non sembra rappresentare un problema grave
+
+#altri test sul modello full:
+full.model <- lm(song_popularity ~ ., data = data2)
+summary(full.model)
+
+#breusch-pagan x testare la presenza di eteroschedasticità
+library(lmtest)
+bptest(full.model)
+
+#durbin-watson x testare la presenza di autocorrelazione degli errori
+dwtest(full.model)
+
 
