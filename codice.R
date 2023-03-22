@@ -31,6 +31,23 @@ data <- read_csv("data.csv", col_types = cols(
                                                                                                           "1")), speechiness = col_number(), 
                                               tempo = col_number(), time_signature = col_factor(levels = c("0", "1", "3", "4", "5")), 
                                               audio_valence = col_number()))
+#analisi descrittiva
+#media, mediana, varianza, deviazione standard
+lapply(data[,2:7], mean)
+lapply(data[,9:10], mean)
+lapply(data[,12:13], mean)
+
+lapply(data[,2:7], median)
+lapply(data[,9:10], median)
+lapply(data[,12:13], median)
+
+lapply(data[,2:7], var)
+lapply(data[,9:10], var)
+lapply(data[,12:13], var)
+
+lapply(data[,2:7], sd)
+lapply(data[,9:10], sd)
+lapply(data[,12:13], sd)
 
 library(ggplot2)
 pdur <- ggplot(data, aes(x = NULL , y = song_duration_s)) +
