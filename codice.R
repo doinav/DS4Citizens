@@ -205,3 +205,37 @@ sum(data2$Popular == 0) #8890
 
 bin.model <- glm(Popular~.-song_popularity, data = data2, family = "binomial" )
 summary(bin.model)
+
+
+
+## cluster ###
+datanew.scaled = scale(df) #prima di fare un clustering -> scalare i valori numerici
+datanew.scaled = as.data.frame(datanew.scaled)
+datanew.scaled = datanew.scaled[-1]  #rimuovere la variabile song_popularity
+clusters = kmeans(datanew.scaled, 2) # algoritmo kmeans
+clusters$cluster
+clust = as.data.frame(clusters$cluster)
+
+library(factoextra)
+fviz_nbclust(datanew.scaled, kmeans)
+fviz_cluster(clusters, datanew.scaled, ellipse.type = "norm", geom = "point") #rappresentazione dei cluster
+
+write.csv(clust, file = "clust.csv")
+
+clust = read.csv("clust.csv")
+View(clust)
+
+df.names = as.data.frame(df2$song_name)
+write.csv(df.names, file = "df.names.csv")
+df.names=read.csv("df.names.csv")
+View(df.names)
+
+total <- merge(clust,df.names,by="X")
+total <- total[-1]
+View(total)
+
+c1 = subset(total, total$clusters.cluster == 1)
+View(c1)
+c2 = subset(total, total$clusters.cluster == 2)
+View(c2)
+
