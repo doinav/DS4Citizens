@@ -213,6 +213,7 @@ datanew.scaled = scale(df) #prima di fare un clustering -> scalare i valori nume
 datanew.scaled = as.data.frame(datanew.scaled)
 datanew.scaled = datanew.scaled[-1]  #rimuovere la variabile song_popularity
 clusters = kmeans(datanew.scaled, 2) # algoritmo kmeans
+clusters
 clusters$cluster
 clust = as.data.frame(clusters$cluster)
 
