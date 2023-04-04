@@ -197,4 +197,11 @@ bptest(full.model)
 #durbin-watson x testare la presenza di autocorrelazione degli errori
 dwtest(full.model)
 
+## regressione logistica non ha le assunzioni così restringenti, quindi i suoi risultati sono più affidabili
+data2$Popular = ifelse(data2$song_popularity >= 60, 1, 0)
+sum(data2$Popular == 1) #4180
+mean(data2$Popular == 1) #32%
+sum(data2$Popular == 0) #8890
 
+bin.model <- glm(Popular~.-song_popularity, data = data2, family = "binomial" )
+summary(bin.model)
