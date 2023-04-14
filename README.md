@@ -12,13 +12,15 @@
 - Bonus: analisi delle correlazioni -> correlation matrix.
 
 # 24 Febbraio 
-- Regressione Lineare
+- Regressione Lineare e assunti 
 
 # 10 Marzo
-- Presentazione
+- Inizio presentazione;
+- Regressione Logistica
 
 # 22 Marzo
 - Presentazione
 
-# Data a scelta
+# 04/04
+- Lavoro sui cluster e fine presentazione online.
 
